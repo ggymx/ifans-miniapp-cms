@@ -1,6 +1,6 @@
 <!--消息通知面板-->
 <template>
-  <div>
+  <div class="alert-div">
        暂无消息
   </div>
 </template>
@@ -12,10 +12,16 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App'
     }
+  },
+  created(){
+  
+  },
+  methods:{
+    
   }
 }
 </script>
 
 <style>
- 
+   @import url('alertsPanl.css');
 </style>

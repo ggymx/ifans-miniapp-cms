@@ -15,23 +15,23 @@
           <!--左侧可折叠面板-->
           <el-collapse v-model="activeNames" @change="handleChange">
             <el-collapse-item title="主页" name="1">
-              <div><router-link to="/home">消息通知</router-link></div>
+              <div class="item"><router-link to="/index/home">消息通知</router-link></div>
             </el-collapse-item>
              <el-collapse-item title="话题" name="2">
-              <div><router-link to="/topic">话题查看</router-link></div>
-              <div><router-link to="/topic/create">话题创建</router-link></div>
+              <div class="item"><router-link to="/index/topic">话题查看</router-link></div>
+              <div class="item"><router-link to="/index/topicCre">话题创建</router-link></div>
             </el-collapse-item>
 
             <el-collapse-item title="投稿" name="3">
               
-              <div><router-link to="/post">投稿查看</router-link></div>
-              <div><router-link to="/post/create">创建投稿</router-link></div>
+              <div class="item"><router-link to="/index/post">投稿查看</router-link></div>
+              <div class="item"><router-link to="/index/topicCre">投稿创建</router-link></div>
             </el-collapse-item>
 
             <el-collapse-item title="用户" name="4">
-            <div><router-link to="/user">用户查看</router-link></div>
-            <div><router-link to="/user/create">用户创建</router-link></div>
-            <div><router-link to="/user/back">用户反馈</router-link></div>
+            <div class="item"><router-link to="/index/user">用户查看</router-link></div>
+            <div class="item"><router-link to="/index/userCre">用户创建</router-link></div>
+            <div class="item"><router-link to="/index/userBack">用户反馈</router-link></div>
             </el-collapse-item>
 
 
@@ -54,6 +54,17 @@ export default {
     };
   },
   components: {},
+  created(){
+    const loading = this.$loading({
+          lock: true,
+          text: '登录中',
+          spinner: 'el-icon-loading',
+          background: 'rgba(0, 0, 0, 0.7)'
+        });
+        setTimeout(() => {
+          loading.close();
+        }, 500);
+  },
   methods: {
     loginOut() {
       this.$router.push("/");

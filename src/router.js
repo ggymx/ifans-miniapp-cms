@@ -18,63 +18,53 @@ import userBack from '../components/backPanl/backPanl.vue'
 Vue.use(Router);
 
 export default new Router({
-    routes:[
+    routes: [
         {
-            path:'/login',
-            component:login
+            path: '/login',
+            component: login
         },
         {
-            path:'/index',
-            component:index,
-            children:[
-              
+            path: '/index',
+            component: index,
+            children: [
+                {
+                    path: 'home',
+                    component: alert
+                },
+                {
+                    path: 'topic',
+                    component: topic
+                },
+                {
+                    path: 'topicCre',
+                    component: topicCre
+                },
+                {
+                    path: 'post',
+                    component: post
+                },
+                {
+                    path: 'postCre',
+                    component: postCre
+                },
+                {
+                    path: 'user',
+                    component: user
+                },
+                {
+                    path: 'userCre',
+                    component: userCre
+                },
+                {
+                    path: 'userBack',
+                    component: userBack
+                }
             ]
         },
         {
             //默认路由
-            path:'/',
-            redirect:'/login'
-        },
-        {
-            path:'/home',
-            component:alert
-        },
-        {
-            path:'/user',
-            component:user,
-            //子路由
-            children:[
-                {
-                path:'/user/create',
-                component:userCre
-                },
-                {
-                path:'/user/back',
-                component:userBack
-                }
-            ]
-        },
-        {
-            path:'/topic',
-            component:topic,
-            //子路由
-            children:[
-                {
-                path:'/topic/create',
-                component:topicCre
-                }
-            ]
-        },
-        {
-            path:'/post',
-            component:post,
-            //子路由
-            children:[
-                {
-                path:'/post/create',
-                component:postCre
-                }
-            ]
+            path: '/',
+            redirect: '/login'
         }
     ]
 })

@@ -93,3 +93,6 @@ a:-webkit-any-link{
     color:#FFF;
     text-decoration: none;
 }
+div.item{
+  padding-bottom: 8px;
+}
