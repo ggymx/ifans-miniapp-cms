@@ -1,0 +1,86 @@
+.container {
+  width: 1200px;
+  height: auto;
+  background-color: transparent;
+  margin: 0 auto;
+  position: relative;
+}
+
+.header {
+  width: 100%;
+  height: 80px;
+  background-color: rgb(96, 125, 139);
+  overflow: hidden;
+  position: relative;
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: #FFF;
+}
+
+.user-border {
+  width: 60px;
+  height: 60px;
+  border-style: solid;
+  border-color: #FFF;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.user {
+  width: 50px;
+  height: 40px;
+}
+
+.username {
+  position: absolute;
+  top: 23px;
+  left: 58px;
+  color: #FFF;
+  font-size: 15px;
+}
+
+.logout-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 35px;
+  width: 75px;
+  padding-top: 10px;
+  padding-left: 18px;
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  /*最小高度*/
+  min-height: 550px;
+  background-color: #FFF;
+  display: flex;
+}
+
+.left-navi{
+    width:15%;
+    height: auto;
+    min-height:550px;
+    background-color: rgb(96, 125, 139);
+}
+
+/*覆盖样式*/
+.el-collapse-item__header {
+   background-color:rgb(96, 125, 139);
+   color: #FFF;
+   height:55px;
+   padding-left: 50px;
+}
+
+.el-collapse-item__content {
+    padding-bottom: 25px;
+    font-size: 13px;
+    color: #FFF;
+    line-height: 1.769230769230769;
+    background-color:rgb(96, 125, 139);
+    padding-left: 50px;
+}
