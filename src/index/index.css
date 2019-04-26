@@ -27,7 +27,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 8px;
-  margin-left: 58px;
+  margin-left: 20px;
 }
 
 .user {
@@ -38,7 +38,7 @@
 .username {
   position: absolute;
   top: 28px;
-  left: 110px;
+  left: 75px;
   color: #FFF;
   font-size: 15px;
   background-color: rgb(96, 125, 139);
@@ -64,7 +64,7 @@
 }
 
 .left-navi{
-    width:15%;
+    width:11%;
     height: auto;
     min-height:550px;
     background-color: rgb(96, 125, 139);
@@ -74,9 +74,8 @@
 .el-collapse-item__header {
    background-color:rgb(96, 125, 139);
    color: #FFF;
-   height:55px;
-   padding-left: 70px;
-  
+   padding-left: 40px;
+   width: 90px;
 }
 
 .el-collapse-item__content {
@@ -85,7 +84,7 @@
     color: #FFF;
     line-height: 1.769230769230769;
     background-color:rgb(96, 125, 139);
-    padding-left: 70px;
+    padding-left: 40px;
 }
 
 
