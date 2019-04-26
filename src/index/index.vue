@@ -13,6 +13,8 @@
       <div class="content">
         <div class="left-navi">
           <!--左侧可折叠面板-->
+          <transition name="slide">
+          <div id="fold" v-if="show">
           <el-collapse v-model="activeNames" @change="handleChange">
             <el-collapse-item title="主页" name="1">
               <div class="item"><router-link to="/index/home">消息通知</router-link></div>
@@ -36,9 +38,12 @@
 
 
           </el-collapse>
+          </div>
+          </transition>
+          <div class="fold" @click="show=!show"></div>
         </div>
-        <!--右侧表格区域-->
-        <div style="width:85%;min-height:550px;height:auto;">
+        <!--右侧表格区域  width:85%;-->
+        <div style="min-height:550px;height:auto;">
            <router-view></router-view>
         </div>
       </div>
@@ -51,6 +56,7 @@ export default {
   name: "index",
   data() {
     return {
+      show:true,
       activeNames: [],
       username:''
     };

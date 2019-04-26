@@ -64,10 +64,11 @@
 }
 
 .left-navi{
-    width:11%;
+    /* width:11%; */
     height: auto;
     min-height:550px;
     background-color: rgb(96, 125, 139);
+    display: flex;
 }
 
 /*覆盖样式*/
@@ -94,4 +95,23 @@ a:-webkit-any-link{
 }
 div.item{
   padding-bottom: 8px;
+}
+
+/*点击折叠左侧导航栏*/
+.fold{
+  width:20px;
+  height:100%;
+  background-color:pink;
+  cursor: pointer;
+}
+
+/*左侧导航栏折叠动画*/
+.slide-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-enter, .slide-leave-to
+/* .slide-fade-leave-active 用于 2.1.8 以下版本 */ {
+  transform: translateX(10px);
+  opacity: 0;
+
 }
