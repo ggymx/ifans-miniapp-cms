@@ -17,5 +17,5 @@ export default {
 </script>
 
 <style>
- 
+   @import url('postcRePanl.css');
 </style>

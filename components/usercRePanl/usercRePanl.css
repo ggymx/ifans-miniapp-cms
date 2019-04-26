@@ -6,3 +6,7 @@
     color: #333;
     font-size: 14px;
 }
+
+.el-input {
+    width: 100%;
+}
