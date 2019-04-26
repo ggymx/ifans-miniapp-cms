@@ -5,7 +5,7 @@
      v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)">
+    element-loading-background="rgba(0, 0, 0, 0.5)">
       <el-table-column prop="postID" label="投稿ID" width="90"></el-table-column>
       <el-table-column prop="postTittle" label="投稿标题" width="180"></el-table-column>
       <el-table-column prop="postDes" label="投稿描述" width="280"></el-table-column>

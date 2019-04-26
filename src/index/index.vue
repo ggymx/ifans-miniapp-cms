@@ -5,7 +5,7 @@
         <div class="user-border">
           <img src="../assets/user.png" class="user">
         </div>
-        <span class="username">游明星</span>
+        <span class="username">彭佳文</span>
         <el-button plain class="logout-btn" @click="loginOut">退出</el-button>
       </div>
     </div>
@@ -46,20 +46,23 @@
   </div>
 </template>
 <script>
+import fetch from '../fetch.js'
 export default {
   name: "index",
   data() {
     return {
-      activeNames: []
+      activeNames: [],
+      username:''
     };
   },
   components: {},
   created(){
+    this.$data.username=sessionStorage.getItem('username');
     const loading = this.$loading({
           lock: true,
-          text: '登录中',
+          text: '加载中',
           spinner: 'el-icon-loading',
-          background: 'rgba(0, 0, 0, 0.7)'
+          background: 'rgba(0, 0, 0, 0.5)'
         });
         setTimeout(() => {
           loading.close();

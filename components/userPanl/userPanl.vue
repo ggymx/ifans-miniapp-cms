@@ -5,7 +5,7 @@
       v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)">
+    element-loading-background="rgba(0, 0, 0, 0.5)">
       <el-table-column prop="ID" label="ID" width="90"></el-table-column>
       <el-table-column prop="nickname" label="昵称" width="200"></el-table-column>
       <el-table-column prop="regInfo" label="注册信息" width="150"></el-table-column>

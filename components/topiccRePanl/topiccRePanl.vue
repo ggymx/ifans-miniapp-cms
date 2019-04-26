@@ -2,7 +2,7 @@
 <template>
   <div style="width:80%;min-height:550px;height:auto;margin:0 auto">
     <div class="input-div">
-    类型：
+    <span class="label">类型：</span>
    <el-select v-model="value" clearable placeholder="请选择">
    <el-option
       v-for="item in options"
@@ -12,12 +12,12 @@
     </el-option>
   </el-select>
   </div>
-  <div class="input-div">标题：<el-input placeholder="请输入标题" v-model="title" clearable></el-input></div>
-   <div class="input-div">内容：<el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="请输入内容" 
+  <div class="input-div"><span class="label">标题：</span><el-input placeholder="请输入标题" v-model="title" clearable></el-input></div>
+   <div class="input-div"><span class="label">内容：</span><el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="请输入内容" 
           v-model="content"></el-input>
    </div>
   <div class="input-div">
-  封面图像：<el-upload
+  <span class="label">封面图像：</span><el-upload
               class="upload-demo"
               action="https://jsonplaceholder.typicode.com/posts/"
               :on-preview="handlePreview"
@@ -32,7 +32,7 @@
         </el-upload>
   </div>
   <div class="input-div">
-  九宫格缩略图：
+  <span class="label">九宫格缩略图：</span>
         <el-upload
               class="upload-demo"
               action="https://jsonplaceholder.typicode.com/posts/"

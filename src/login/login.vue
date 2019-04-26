@@ -13,12 +13,14 @@
 </template>
 
 <script>
+import fetch from '../fetch.js'
 export default {
   name: 'login',
   data () {
     return {
       username:'',
-      pwd:''
+      pwd:'',
+      userCount:0
     }
   },
   components:{
@@ -26,7 +28,36 @@ export default {
   },
   methods:{
     loginIn(){
-      this.$router.push('./index')
+      console.log('username---------',this.$data.username);
+      if(this.$data.username==''||this.$data.pwd==''){
+        this.$message.error('用户名或密码不能为空！');
+        return;
+      }
+      fetch.post('/admin/login',{
+        username:this.$data.username,
+        password:this.$data.pwd
+      }).then(res=>{
+        //缓存用户名和token
+        sessionStorage.setItem('username',res.user.username);
+        sessionStorage.setItem('token',res.token);
+        this.$message({
+          message: '欢迎'+this.$data.username+'回来！',
+          type: 'success'
+        });
+          this.$router.push('./index')
+      }).catch(err=>{
+        console.log('this.$data.userCount-----',this.$data.userCount)
+          if(this.$data.userCount>=5){
+            console.log('登录错误次数过多');
+           this.$message.error('错误次数过多，请尝试联系超级管理员！');
+          }else{
+          this.$message.error('用户名或密码有误！');
+          this.$data.userCount++;
+          }     
+      });
+        //测试
+        this.$router.push('./index')
+    
     }
   }
 }

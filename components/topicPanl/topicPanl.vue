@@ -5,7 +5,7 @@
      v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
-    element-loading-background="rgba(0, 0, 0, 0.8)">
+    element-loading-background="rgba(0, 0, 0, 0.5)">
       <el-table-column prop="ID" label="ID" width="50"></el-table-column>
       <el-table-column prop="Type" label="类型" width="60"></el-table-column>
       <el-table-column prop="Tittle" label="标题" width="180"></el-table-column>
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import fetch from '../../src/fetch.js'
 export default {
   name: "topicPanl",
   data() {
@@ -110,16 +111,31 @@ export default {
           View: "undefined",
           Join: "undefined"
         }
-      ]
+      ],
+      resData:[]
     };
   },
   created(){
     setTimeout(() => {
       this.$data.loading=false
     }, 500);
+  },
+  methods:{
+    init(){
+      fetch.get('/admin/user/post/list',{
+         cursor:0,
+         limit:10
+      }).then(res=>{
+        console.log('resData-------------------------',res)
+        this.$data.resData=res;
+      }).catch(err=>{
+
+      })
+    }
   }
 };
 </script>
 
 <style>
+ @import url('topicPanl.css');
 </style>

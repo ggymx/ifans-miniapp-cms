@@ -58,6 +58,10 @@ export default new Router({
                 {
                     path: 'userBack',
                     component: userBack
+                },
+                {
+                    path:'/index',
+                    redirect:'/index/home'
                 }
             ]
         },
