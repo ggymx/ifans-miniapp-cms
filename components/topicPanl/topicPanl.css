@@ -5,6 +5,7 @@
 .label {
     color: #333;
     font-size: 14px;
+    margin-left: 6.7px;
 }
 
 .el-input {
@@ -68,4 +69,13 @@
 
 .el-dialog {
     width: 46%!important;
+}
+
+/*修改按钮样式*/
+.custom-btn{
+    height: 35px;
+    padding-top: 10px;
+    margin-left: 15px;
+    width: 80px;
+    padding-left: 15px;
 }

@@ -3,7 +3,7 @@
   <div>
     <!--顶部的条件搜索区-->
     <div style="margin-top:10px;margin-left: 10px;display: flex;align-items: center;">
-    <span class="label">类型：</span>
+    <span class="label" style="margin-left:0px">类型：</span>
     <el-select v-model="typed" placeholder="请选择" style="width: 100px;height:35px">
     <el-option
       v-for="item in typeOpt"
@@ -17,7 +17,7 @@
    <el-input
     placeholder="输入创建人"
     v-model="creatUser"
-    clearable style="width:100px;height:35px">
+    clearable style="width:120px;height:35px">
   </el-input>
 
 
@@ -34,18 +34,12 @@
 
     <span class="label">高级搜索：</span>
       <div class="highSearch">
-        <!-- <el-input
-          placeholder="请输入内容"
-          v-model="input"
-          clearable style="border-style: none;">
-        </el-input> -->
+    
         <input class="custom-input" placeholder="高级搜索"/>
         <div class="edit-div" @click="searchMore"><i class="el-icon-edit"></i></div>
       </div>
-       <el-button type="primary" icon="el-icon-search" style="height: 35px;padding-top: 10px;
-    margin-left: 15px;">搜索</el-button>
-       <el-button type="primary" icon="el-icon-edit" style="height: 35px;padding-top: 10px;
-    margin-left: 15px;">创建</el-button>
+       <el-button type="primary" icon="el-icon-search" class="custom-btn">搜索</el-button>
+       <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
 
     <!--数据显示区域-->

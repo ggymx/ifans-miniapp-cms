@@ -1,6 +1,7 @@
 <!--消息通知面板-->
 <template>
    <div>
+
     <el-table :data="tableData" style="width: 100%" stripe
     v-loading="loading"
     element-loading-text="拼命加载中"
@@ -89,5 +90,5 @@ export default {
 </script>
 
 <style>
- 
+ @import url('backPanl.css');
 </style>
