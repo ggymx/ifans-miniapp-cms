@@ -1,8 +1,8 @@
 <!--消息通知面板-->
 <template>
   <div style="width:80%;min-height:550px;height:auto;margin:0 auto">
-  <div class="input-div">昵称：<el-input placeholder="请输入昵称" v-model="title" clearable></el-input></div>
-   <div class="input-div">头像：<el-input placeholder="请输入URL" v-model="title" clearable></el-input></div>
+  <div class="input-div"><span class="label">昵称：</span><el-input placeholder="请输入昵称" v-model="title" clearable></el-input></div>
+   <div class="input-div"><span class="label">头像：</span><el-input placeholder="请输入URL" v-model="title" clearable></el-input></div>
    <div class="input-div">
     <el-button type="info" @click="reset">重置</el-button>
      <el-button type="primary" @click="creUser">创建</el-button>
