@@ -1,6 +1,6 @@
 <template>
   <div style="width:100%;height:auto;">
-    <div class="container" style="background-color: rgb(96, 125, 139);">
+    <div class="container" style="background-color: #3f506a;">
       <div class="header">
         <div class="user-border">
           <img src="../assets/user.png" class="user">
