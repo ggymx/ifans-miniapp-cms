@@ -1,3 +1,87 @@
 .el-pagination {
     margin-top: 10px;
 }
+
+
+
+.el-button {
+    margin-left: 0px;
+}
+
+.label {
+    color: #333;
+    font-size: 14px;
+    margin-left: 6.7px;
+}
+
+.el-input {
+    width: auto;
+}
+
+.el-input__inner {   
+    height: 35px;
+    /* line-height: 40px; */
+}
+
+/*高级匹配的外围框*/
+.highSearch{
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DCDFE6;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+}
+
+.custom-input{
+    -webkit-appearance: none;
+    background-color: #FFF;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #DCDFE6;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 33.5px;
+    line-height: 40px;
+    outline: 0;
+    padding: 0 15px;
+    -webkit-transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 88px;
+    border-style: none;
+}
+.custom-input::placeholder{
+    color:#DCDFE6;
+    font-size:13.3333px;
+}
+.edit-div{
+    height: 32px;
+    background-color: #eee;;
+    display: flex;
+    align-items: center;
+    width: 32px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/*覆盖对话框样式*/
+.el-dialog__body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.el-dialog {
+    width: 46%!important;
+}
+
+/*修改按钮样式*/
+.custom-btn{
+    height: 35px;
+    padding-top: 10px;
+    margin-left: 15px;
+    width: 80px;
+    padding-left: 15px;
+}

@@ -12,9 +12,9 @@
     </el-option>
   </el-select>
   </div>
-  <div class="input-div"><span class="label">标题：</span><el-input placeholder="请输入标题" v-model="title" clearable></el-input></div>
+  <div class="input-div"><span class="label">标题：</span><el-input placeholder="请输入标题" v-model="title" clearable class="full"></el-input></div>
    <div class="input-div"><span class="label">内容：</span><el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="请输入内容" 
-          v-model="content"></el-input>
+          v-model="content" class="full"></el-input>
    </div>
   <div class="input-div">
   <span class="label">封面图像：</span><el-upload
@@ -85,6 +85,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+/*scoped代表组件的私有样式（防止样式污染） 不包括import的css文件*/
+  .full{
+    width:100%
+  }
   @import url('topiccRePanl.css');
 </style>

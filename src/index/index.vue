@@ -91,17 +91,11 @@ $(document).ready(function(){
          width:'toggle'
        });
       //  console.log('test----------------',$('.arrow-img').attr('src'));
-       if($('.arrow-img').attr('src')=='/dist/b.png?fffce814e907e6a0180c52cec569778d'){
-         console.log('进入');
-         $('.arrow-img').attr(
-           {
-           'src' : '/dist/a.png?5708764c4f51361e428143da0f27e625'
-           })
+       if($('.arrow-img').attr('src')==='src/assets/b.png'){
+        //  console.log('进入');
+         $('.arrow-img').attr('src','src/assets/a.png')
        }else{
-         $('.arrow-img').attr(
-           {
-           'src' : '/dist/b.png?fffce814e907e6a0180c52cec569778d'
-           })
+         $('.arrow-img').attr('src','src/assets/b.png')
        }
   });
   
