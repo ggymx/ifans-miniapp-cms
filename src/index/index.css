@@ -101,17 +101,21 @@ div.item{
 .fold{
   width:20px;
   height:100%;
-  background-color:pink;
+  background-color:#eee;
   cursor: pointer;
 }
 
-/*左侧导航栏折叠动画*/
-.slide-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+/*表格显示区*/
+.main{
+  min-height: 550px;
+  height: auto;
+  max-width: 1180px;
+  min-width: 1050px;
 }
-.slide-enter, .slide-leave-to
-/* .slide-fade-leave-active 用于 2.1.8 以下版本 */ {
-  transform: translateX(10px);
-  opacity: 0;
 
+.arrow-img{
+  width:12px;
+  height:11px;
+  margin-left: 4px;
+  margin-top: 250px;
 }

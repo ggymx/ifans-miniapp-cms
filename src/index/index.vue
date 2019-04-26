@@ -13,8 +13,8 @@
       <div class="content">
         <div class="left-navi">
           <!--左侧可折叠面板-->
-          <transition name="slide">
-          <div id="fold" v-if="show">
+      
+          <div id="fold">
           <el-collapse v-model="activeNames" @change="handleChange">
             <el-collapse-item title="主页" name="1">
               <div class="item"><router-link to="/index/home">消息通知</router-link></div>
@@ -36,14 +36,15 @@
             <div class="item"><router-link to="/index/userBack">用户反馈</router-link></div>
             </el-collapse-item>
 
-
           </el-collapse>
           </div>
-          </transition>
-          <div class="fold" @click="show=!show"></div>
+         
+          <div class="fold">
+              <img src="../assets/b.png" class="arrow-img">
+          </div>
         </div>
         <!--右侧表格区域  width:85%;-->
-        <div style="min-height:550px;height:auto;">
+        <div class="main">
            <router-view></router-view>
         </div>
       </div>
@@ -52,11 +53,11 @@
 </template>
 <script>
 import fetch from '../fetch.js'
+import $ from '../jquery-3.0.0.min.js'
 export default {
   name: "index",
   data() {
     return {
-      show:true,
       activeNames: [],
       username:''
     };
@@ -81,6 +82,30 @@ export default {
     handleChange() {}
   }
 };
+
+$(document).ready(function(){
+  // 折叠动画
+  $('.fold').click(function(){
+     console.log('测试--------');
+      $("#fold").animate({
+         width:'toggle'
+       });
+      //  console.log('test----------------',$('.arrow-img').attr('src'));
+       if($('.arrow-img').attr('src')=='/dist/b.png?fffce814e907e6a0180c52cec569778d'){
+         console.log('进入');
+         $('.arrow-img').attr(
+           {
+           'src' : '/dist/a.png?5708764c4f51361e428143da0f27e625'
+           })
+       }else{
+         $('.arrow-img').attr(
+           {
+           'src' : '/dist/b.png?fffce814e907e6a0180c52cec569778d'
+           })
+       }
+  });
+  
+})
 </script>
 
 <style>
