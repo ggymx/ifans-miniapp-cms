@@ -39,7 +39,7 @@
           </el-collapse>
           </div>
          
-          <div class="fold">
+          <div class="fold" @click="flod_left">
               <img src="../assets/b.png" class="arrow-img">
           </div>
         </div>
@@ -80,26 +80,26 @@ export default {
     loginOut() {
       this.$router.push("/");
     },
-    handleChange() {}
+    handleChange() {},
+    flod_left(){
+      /*动画效果可以在这里实现，用@click监听 */
+      console.log('测试--------');
+      $("#fold").animate({
+         width:'toggle'
+       });
+       if($('.arrow-img').attr('src')==='src/assets/b.png'){
+         $('.arrow-img').attr('src','src/assets/a.png')
+       }else{
+         $('.arrow-img').attr('src','src/assets/b.png')
+       }
+    }
   }
 };
 
 $(document).ready(function(){
   // 折叠动画
-  $('.fold').click(function(){
-     console.log('测试--------');
-      $("#fold").animate({
-         width:'toggle'
-       });
-      //  console.log('test----------------',$('.arrow-img').attr('src'));
-       if($('.arrow-img').attr('src')==='src/assets/b.png'){
-        //  console.log('进入');
-         $('.arrow-img').attr('src','src/assets/a.png')
-       }else{
-         $('.arrow-img').attr('src','src/assets/b.png')
-       }
-  });
-  
+     /*jquery直接操作DOM，Vue是操作虚拟DOM，
+     $('').click会在页面（index.html）首次加载时绑定事件，此时组件中的元素未被渲染，因此无法绑定*/
    //拖拽按钮
   
 })

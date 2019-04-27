@@ -69,7 +69,7 @@
      </el-table-column>
 
     </el-table>
-    <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right">
+    <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
       <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
     </div>
     </div>
@@ -248,6 +248,9 @@ export default {
       this.$data.loading=false
     }, 500);
   },
+  mounted(){
+
+  },
   methods:{
     //初始化数据
     init(){
@@ -272,25 +275,25 @@ export default {
             done();
           })
           .catch(_ => {});
-     }
-  }
-};
-$(document).ready(function(){
-  $('#flod-right').click(function(){
-    // alert('点击测试');
-    console.log('------------------------sssss',$('#flod-column'))
+     },
+
+     flod_right(){
+       console.log('------------------------sssss')
      $('.el-table__fixed-right').animate({
          width:'toggle'
      })
       if($('.arrow-right').attr('src')==='src/assets/b.png'){
-        //  console.log('进入');
+       
          $('.arrow-right').attr('src','src/assets/a.png')
        }else{
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
-  })
-});
+  }
+  },
+  
+};
+
 </script>
 
 <style>
