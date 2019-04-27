@@ -43,6 +43,7 @@
     </div>
 
     <!--数据显示区域-->
+    <div style="width:auto;height:auto;display:flex">
     <el-table :data="tableData" style="width: 100%" stripe
      v-loading="loading"
     element-loading-text="拼命加载中"
@@ -59,13 +60,19 @@
       <el-table-column prop="status" label="状态" width="95"></el-table-column>
       <el-table-column prop="View" label="浏览量" width="95"></el-table-column>
       <el-table-column prop="Join" label="参与量" width="95"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
-      <template slot-scope="scope">
+
+      <el-table-column fixed="right" label="操作" width="88" >
+      <template slot-scope="scope" id="flod-column">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
         <el-button type="text" size="small">删除</el-button>
       </template>
      </el-table-column>
+
     </el-table>
+    <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right">
+      <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
+    </div>
+    </div>
     <!--分页-->
      <el-pagination
       @size-change="handleSizeChange"
@@ -111,6 +118,7 @@
 
 <script>
 import fetch from '../../src/fetch.js'
+import $ from '../../src/jquery-3.0.0.min.js'
 export default {
   name: "topicPanl",
   data() {
@@ -255,10 +263,6 @@ export default {
     },
     //高级匹配
     searchMore(){
-      //  this.$alert('<strong>搜索标题</strong>', '高级查询', {
-      //     dangerouslyUseHTMLString: true
-      //   });
-      //弹出对话框
       this.$data.dialogVisible=true
     },
      //点击叉号关闭对话框
@@ -271,6 +275,22 @@ export default {
      }
   }
 };
+$(document).ready(function(){
+  $('#flod-right').click(function(){
+    // alert('点击测试');
+    console.log('------------------------sssss',$('#flod-column'))
+     $('.el-table__fixed-right').animate({
+         width:'toggle'
+     })
+      if($('.arrow-right').attr('src')==='src/assets/b.png'){
+        //  console.log('进入');
+         $('.arrow-right').attr('src','src/assets/a.png')
+       }else{
+         $('.arrow-right').attr('src','src/assets/b.png')
+       }
+     console.log('-------',this);
+  })
+});
 </script>
 
 <style>

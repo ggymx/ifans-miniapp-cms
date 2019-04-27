@@ -53,7 +53,7 @@
       <el-table-column prop="postBrow" label="浏览量" width="100"></el-table-column>
       <el-table-column prop="postPar" label="参与量" width="100"></el-table-column>
       <el-table-column prop="postCre" label="新建人" width="100"></el-table-column>
-      <el-table-column prop="postTime" label="新建时间" width="110"></el-table-column>
+      <el-table-column prop="postTime" label="新建时间" width="100"></el-table-column>
       <el-table-column prop="isUp" label="是否置顶" width="95"></el-table-column>
       <el-table-column prop="status" label="状态" width="95"></el-table-column>
       <el-table-column fixed="right" label="操作" width="100">

@@ -49,7 +49,8 @@
         </div>
       </div>
     </div>
-  </div>
+    
+    </div>
 </template>
 <script>
 import fetch from '../fetch.js'
@@ -99,7 +100,10 @@ $(document).ready(function(){
        }
   });
   
+   //拖拽按钮
+  
 })
+
 </script>
 
 <style>
