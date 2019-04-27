@@ -248,9 +248,6 @@ export default {
       this.$data.loading=false
     }, 500);
   },
-  mounted(){
-
-  },
   methods:{
     //初始化数据
     init(){
@@ -276,7 +273,7 @@ export default {
           })
           .catch(_ => {});
      },
-
+     //折叠效果
      flod_right(){
        console.log('------------------------sssss')
      $('.el-table__fixed-right').animate({
@@ -289,7 +286,7 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
-  }
+    }
   },
   
 };

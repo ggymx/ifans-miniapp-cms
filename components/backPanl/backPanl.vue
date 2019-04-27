@@ -41,7 +41,7 @@
        <el-button type="primary" icon="el-icon-search" class="custom-btn">搜索</el-button>
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
-
+   <div style="width:auto;height:auto;display:flex">
     <el-table :data="tableData" style="width: 100%" stripe
     v-loading="loading"
     element-loading-text="拼命加载中"
@@ -56,13 +56,17 @@
       <el-table-column prop="postTime" label="举报时间" width="95"></el-table-column>
       <el-table-column prop="isUp" label="处理状态" width="95"></el-table-column>
       <el-table-column prop="status" label="备注" width="95"></el-table-column>
-      <el-table-column fixed="right" label="操作" width="100">
+      <el-table-column fixed="right" label="操作" width="88">
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
         <el-button type="text" size="small">删除</el-button>
       </template>
      </el-table-column>
     </el-table>
+    <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
+      <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
+    </div>
+    </div>
     <!--分页-->
     <div style="display:flex;align-items: center;">
 
@@ -113,6 +117,7 @@
 </template>
 
 <script>
+import $ from '../../src/jquery-3.0.0.min.js'
 export default {
   name: 'backPanl',
   data () {
@@ -206,9 +211,6 @@ export default {
   },
   methods:{
      searchMore(){
-      //  this.$alert('<strong>搜索标题</strong>', '高级查询', {
-      //     dangerouslyUseHTMLString: true
-      //   });
       //弹出对话框
       this.$data.dialogVisible=true
     },
@@ -219,7 +221,21 @@ export default {
             done();
           })
           .catch(_ => {});
-     }
+     },
+       //折叠效果
+     flod_right(){
+       console.log('------------------------sssss')
+     $('.el-table__fixed-right').animate({
+         width:'toggle'
+     })
+      if($('.arrow-right').attr('src')==='src/assets/b.png'){
+       
+         $('.arrow-right').attr('src','src/assets/a.png')
+       }else{
+         $('.arrow-right').attr('src','src/assets/b.png')
+       }
+     console.log('-------',this);
+    }
   }
 }
 </script>
