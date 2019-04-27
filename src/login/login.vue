@@ -33,8 +33,8 @@ export default {
         this.$message.error('用户名或密码不能为空！');
         return;
       }
-      // console.log('username-----------',this.$data.username);
-      //   console.log('username-----------',this.$data.pwd);
+      console.log('username-----------',this.$data.username);
+        console.log('username-----------',this.$data.pwd);
       fetch.post('/admin/login',{
         username:this.$data.username,
         password:this.$data.pwd
@@ -48,7 +48,7 @@ export default {
         });
           this.$router.push('./index')
       }).catch(err=>{
-        //  console.log('err------------------',err);
+         console.log('err------------------',err);
         // console.log('this.$data.userCount-----',this.$data.userCount)
           if(this.$data.userCount>=5){
             console.log('登录错误次数过多');

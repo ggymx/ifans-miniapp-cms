@@ -244,6 +244,7 @@ export default {
     };
   },
   created(){
+    this.init();
     setTimeout(() => {
       this.$data.loading=false
     }, 500);
@@ -258,7 +259,7 @@ export default {
         console.log('resData-------------------------',res)
         this.$data.resData=res;
       }).catch(err=>{
-
+          console.log('topic-err----------------',err);
       })
     },
     //高级匹配

@@ -2,15 +2,12 @@
 <template>
   <div style="padding-top: 10px;">
     <span class="alert-text">暂无消息</span>
-    <el-row style="width:auto;display:flex">
-      <el-col style="width: 250px;margin-left: 20px;">
-        <el-card :body-style="{ padding: '0px' }">
-          <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            class="image"
-          >
-          <div style="padding: 14px;">
-            <span>新增用户数</span>
+    <el-row style="width:auto;display:flex;justify-content: space-evenly;">
+      <el-col style="width: 180px;">
+        <el-card :body-style="{ padding: '0px' }" style="background-color:#c6d2d1">
+          <img  src="../../src/assets/home_user.png" class="image">
+          <div style="padding: 14px;background-color:#FFF">
+            <span>新增粉丝</span>
             <div class="bottom clearfix">
               <time class="time">999</time>
               <el-button type="text" class="button">查看更多</el-button>
@@ -18,13 +15,10 @@
           </div>
         </el-card>
       </el-col>
-      <el-col style="width: 250px;margin-left: 20px;justify-content: space-evenly;">
-        <el-card :body-style="{ padding: '0px' }">
-          <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            class="image"
-          >
-          <div style="padding: 14px;">
+      <el-col style="width: 180px;">
+        <el-card :body-style="{ padding: '0px' }" style="background-color:#d8cd5a">
+          <img src="../../src/assets/home_user.png" class="image">
+          <div style="padding: 14px;background-color:#FFF">
             <span>热门话题</span>
             <div class="bottom clearfix">
               <time class="time">999</time>
@@ -33,16 +27,27 @@
           </div>
         </el-card>
       </el-col>
-       <el-col style="width: 250px;margin-left: 20px;">
-        <el-card :body-style="{ padding: '0px' }">
-          <img
-            src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-            class="image"
-          >
-          <div style="padding: 14px;">
-            <span>用户分析</span>
+        <el-col style="width: 180px;">
+        <el-card :body-style="{ padding: '0px' }" style="background-color:#5ad893">
+          <img src="../../src/assets/home_user.png" class="image">
+          <div style="padding: 14px;background-color:#FFF">
+            <span>数据分析</span>
             <div class="bottom clearfix">
               <time class="time">999</time>
+              <el-button type="text" class="button">查看更多</el-button>
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+       </el-col>
+        <el-col style="width: 180px;">
+        <el-card :body-style="{ padding: '0px' }" style="background-color:#c181b6">
+          <img src="../../src/assets/home_user.png" class="image">
+          <div style="padding: 14px;background-color:#FFF">
+            <span>用户TOP
+            </span>
+            <div class="bottom clearfix">
+              <time class="time">SunDa等...</time>
               <el-button type="text" class="button">查看更多</el-button>
             </div>
           </div>
