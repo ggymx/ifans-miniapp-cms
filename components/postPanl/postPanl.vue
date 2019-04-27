@@ -53,9 +53,15 @@
       <el-table-column prop="postBrow" label="浏览量" width="100"></el-table-column>
       <el-table-column prop="postPar" label="参与量" width="100"></el-table-column>
       <el-table-column prop="postCre" label="新建人" width="100"></el-table-column>
-      <el-table-column prop="postTime" label="新建时间" width="95"></el-table-column>
+      <el-table-column prop="postTime" label="新建时间" width="110"></el-table-column>
       <el-table-column prop="isUp" label="是否置顶" width="95"></el-table-column>
       <el-table-column prop="status" label="状态" width="95"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="100">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
+      </template>
+     </el-table-column>
     </el-table>
     <!--分页-->
     <div style="display:flex;align-items: center;">

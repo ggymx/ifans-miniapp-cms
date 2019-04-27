@@ -52,13 +52,19 @@
       <el-table-column prop="Type" label="类型" width="60"></el-table-column>
       <el-table-column prop="Tittle" label="标题" width="180"></el-table-column>
       <el-table-column prop="Text" label="内容" width="280"></el-table-column>
-      <el-table-column prop="creatUser" label="创建人" width="100"></el-table-column>
+      <el-table-column prop="creatUser" label="创建人" width="80"></el-table-column>
       <el-table-column prop="RefTopic" label="关联话题" width="100"></el-table-column>
       <el-table-column prop="creatAt" label="创建时间" width="100"></el-table-column>
       <el-table-column prop="IsUp" label="是否置顶" width="95"></el-table-column>
       <el-table-column prop="status" label="状态" width="95"></el-table-column>
       <el-table-column prop="View" label="浏览量" width="95"></el-table-column>
       <el-table-column prop="Join" label="参与量" width="95"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="100">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
+      </template>
+     </el-table-column>
     </el-table>
     <!--分页-->
      <el-pagination

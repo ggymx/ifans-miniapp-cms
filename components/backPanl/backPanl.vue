@@ -56,6 +56,12 @@
       <el-table-column prop="postTime" label="举报时间" width="95"></el-table-column>
       <el-table-column prop="isUp" label="处理状态" width="95"></el-table-column>
       <el-table-column prop="status" label="备注" width="95"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="100">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
+        <el-button type="text" size="small">删除</el-button>
+      </template>
+     </el-table-column>
     </el-table>
     <!--分页-->
     <div style="display:flex;align-items: center;">
