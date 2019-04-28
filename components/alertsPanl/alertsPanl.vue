@@ -39,7 +39,6 @@
           </div>
         </el-card>
       </el-col>
-       </el-col>
         <el-col style="width: 180px;">
         <el-card :body-style="{ padding: '0px' }" style="background-color:#c181b6">
           <img src="../../src/assets/home_user.png" class="image">

@@ -28,20 +28,18 @@ export default {
   },
   methods:{
     loginIn(){
-      // console.log('username---------',this.$data.username);
       if(this.$data.username==''||this.$data.pwd==''){
         this.$message.error('用户名或密码不能为空！');
         return;
       }
-      console.log('username-----------',this.$data.username);
-        console.log('username-----------',this.$data.pwd);
       fetch.post('/admin/login',{
         username:this.$data.username,
         password:this.$data.pwd
       }).then(res=>{
         //缓存用户名和token
-        sessionStorage.setItem('username',res.user.username);
-        sessionStorage.setItem('token',res.token);
+        sessionStorage.setItem('username',res.data.user.username);
+        sessionStorage.setItem('token',res.data.token);
+        // console.log('token------------------------------',res.data.token)
         this.$message({
           message: '欢迎'+this.$data.username+'回来！',
           type: 'success'
@@ -49,7 +47,6 @@ export default {
           this.$router.push('./index')
       }).catch(err=>{
          console.log('err------------------',err);
-        // console.log('this.$data.userCount-----',this.$data.userCount)
           if(this.$data.userCount>=5){
             console.log('登录错误次数过多');
            this.$message.error('错误次数过多，请尝试联系超级管理员！');
@@ -58,9 +55,6 @@ export default {
           this.$data.userCount++;
           }     
       });
-        // //测试
-        this.$router.push('./index')
-    
     }
   }
 }

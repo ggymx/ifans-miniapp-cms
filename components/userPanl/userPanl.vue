@@ -43,12 +43,12 @@
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
     <div style="width:auto;height:auto;display:flex">
-    <el-table :data="tableData" style="width: 100%" stripe
+    <el-table :data="resData.data.users" style="width: 100%" stripe
       v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
-      <el-table-column prop="ID" label="ID" width="90"></el-table-column>
+      <el-table-column prop="id" label="ID" width="90"></el-table-column>
       <el-table-column prop="nickname" label="昵称" width="200"></el-table-column>
       <el-table-column prop="regInfo" label="注册信息" width="150"></el-table-column>
       <el-table-column prop="createAt" label="注册时间" width="250"></el-table-column>
@@ -109,6 +109,7 @@
 </template>
 
 <script>
+import fetch from '../../src/fetch.js'
 import $ from '../../src/jquery-3.0.0.min.js'
 export default {
   name: 'userPanl',
@@ -158,42 +159,12 @@ export default {
             }
           }]
         },
-     tableData:[
-       {
-         ID:1,
-         nickname:'SunDa',
-         regInfo:'wxapp',
-         createAt:'2019-04-04T10:09:51.371Z',
-         updateAt:'2019-05-04T10:09:51.371Z'
-       },
-         {
-         ID:1,
-         nickname:'SunDa',
-         regInfo:'wxapp',
-         createAt:'2019-04-04T10:09:51.371Z',
-         updateAt:'2019-05-04T10:09:51.371Z'
-       },
-         {
-         ID:1,
-         nickname:'SunDa',
-         regInfo:'wxapp',
-         createAt:'2019-04-04T10:09:51.371Z',
-         updateAt:'2019-05-04T10:09:51.371Z'
-       },  
-       {
-         ID:1,
-         nickname:'SunDa',
-         regInfo:'wxapp',
-         createAt:'2019-04-04T10:09:51.371Z',
-         updateAt:'2019-05-04T10:09:51.371Z'
-       }
-     ]
+        resData:null,
+     tableData:['测试数据']
     }
   },
   created(){
-    setTimeout(() => {
-      this.$data.loading=false;
-    }, 500);
+    this.init();
   },
   methods:{
        searchMore(){
@@ -221,6 +192,22 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
+    },
+     //初始化数据
+    init(){
+      // alert('init--------------------调用');
+      fetch.get('/admin/user',{
+         cursor:0,
+         limit:80
+      }).then(res=>{
+        console.log('resData-------------------------',res)
+        this.$data.resData=res;
+          setTimeout(() => {
+           this.$data.loading=false
+          }, 500);
+      }).catch(err=>{
+          console.log('topic-err----------------',err);
+      })
     }
   }
 }

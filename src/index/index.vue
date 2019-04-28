@@ -5,7 +5,7 @@
         <div class="user-border">
           <img src="../assets/user.png" class="user">
         </div>
-        <span class="username">彭佳文</span>
+        <span class="username">{{username}}</span>
         <el-button plain class="logout-btn" @click="loginOut">退出</el-button>
       </div>
     </div>
@@ -60,21 +60,22 @@ export default {
   data() {
     return {
       activeNames: [],
-      username:''
+      username:'',
+      token:''
     };
   },
   components: {},
   created(){
-    this.$data.username=sessionStorage.getItem('username');
-    const loading = this.$loading({
+     const loading = this.$loading({
           lock: true,
           text: '加载中',
           spinner: 'el-icon-loading',
           background: 'rgba(0, 0, 0, 0.5)'
         });
-        setTimeout(() => {
-          loading.close();
-        }, 500);
+    this.$data.username=sessionStorage.getItem('username');
+    setTimeout(() => {
+         loading.close();
+    }, 500);
   },
   methods: {
     loginOut() {

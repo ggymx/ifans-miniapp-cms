@@ -118,6 +118,7 @@
 </template>
 
 <script>
+import fetch from '../../src/fetch.js'
 import $ from '../../src/jquery-3.0.0.min.js'
 export default {
   name: "postPanl",
@@ -167,6 +168,7 @@ export default {
             }
           }]
         },
+        resData:null,//待接收数据的字段
       tableData: [
         {
           postID: 1,
@@ -205,6 +207,7 @@ export default {
     };
   },
   created(){
+    // this.init();
     setTimeout(() => {
       this.$data.loading=false;
     }, 500);
@@ -251,7 +254,23 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
-  }
+  },
+    //初始化数据
+    init(){
+      // alert('init--------------------调用');
+      // fetch.get('/admin/user/post/list',{
+      //    cursor:0,
+      //    limit:80
+      // }).then(res=>{
+      //   console.log('resData-------------------------',res)
+      //   this.$data.resData=res;
+      //     setTimeout(() => {
+      //      this.$data.loading=false
+      //     }, 500);
+      // }).catch(err=>{
+      //     console.log('topic-err----------------',err);
+      // })
+    }
   }
 };
 </script>

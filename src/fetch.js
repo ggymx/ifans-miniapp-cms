@@ -2,6 +2,11 @@
 import axios from 'axios'
 // import qs from 'qs'
 
+
+// alert('token--------------',sessionStorage.getItem('token'));
+// let token=sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
+// axios.defaults.headers.common['Authorization'] = token;
+
 //创建axios的实例
 const httpService=axios.create({
     //定义基路径
@@ -10,13 +15,14 @@ const httpService=axios.create({
     timeout:2000
 });
 
-//request拦截器
+//request拦截器    ???
 httpService.interceptors.request.use({
     config:any => {
-        // 根据条件加入token-安全携带
-        // if (true) { // 需自定义
+        alert('request拦截器被调用----------------------')
+        //根据条件加入token-安全携带    不起作用？？？？
+        // if (token) { // 需自定义
         //     // 让每个请求携带token
-        //     config.headers['User-Token'] = '';
+        //     config.headers['User-Token'] = token;
         // }
         return config;
     }, 
@@ -26,10 +32,11 @@ httpService.interceptors.request.use({
     }
 })
 
-//response拦截器
+//response拦截器    ???
 httpService.interceptors.response.use({
     //响应处理
     response:any => {
+        alert('response拦截器被调用----------------------')
         // 统一处理状态
         const res = response.data;
         if (res.statuscode != 1) { // 需自定义
@@ -67,6 +74,10 @@ httpService.interceptors.response.use({
  * params:请求的参数
  */
 export function get(url,params={}){
+        // alert('get--------------------------调用');
+        //后面使用vuex
+        let token=sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
+        axios.defaults.headers.common['Authorization'] = token;
         //使用axios实例
         return new Promise((resolve, reject) => {
             httpService({
@@ -87,6 +98,8 @@ export function get(url,params={}){
  * params:请求的参数
  */
  export function post(url,params={}){
+    let token=sessionStorage.getItem('token')?sessionStorage.getItem('token'):'';
+    axios.defaults.headers.common['Authorization'] = token;
     return new Promise((resolve, reject) => {
         httpService({
             url: url,

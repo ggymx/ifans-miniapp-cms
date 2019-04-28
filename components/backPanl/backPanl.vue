@@ -117,6 +117,7 @@
 </template>
 
 <script>
+import fetch from '../../src/fetch.js'
 import $ from '../../src/jquery-3.0.0.min.js'
 export default {
   name: 'backPanl',
@@ -166,6 +167,7 @@ export default {
             }
           }]
         },
+        resData:null,
        tableData: [
         {
           postID: 1,
@@ -235,7 +237,8 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
-    }
+    },
+    init(){}
   }
 }
 </script>
