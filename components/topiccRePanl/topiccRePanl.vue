@@ -3,15 +3,18 @@
   <div style="width:80%;min-height:550px;height:auto;margin:0 auto">
     <div class="input-div">
     <span class="label">类型：</span>
-   <el-select v-model="value" clearable placeholder="请选择">
+   <el-select v-model="seleType" clearable placeholder="请选择" @change="test">
    <el-option
-      v-for="item in options"
+      v-for="item in postType"
       :key="item.value"
       :label="item.label"
       :value="item.value">
     </el-option>
   </el-select>
   </div>
+
+  <!--模板-->
+  <div v-show="seleType==1">
   <div class="input-div"><span class="label">标题：</span><el-input placeholder="请输入标题" v-model="title" clearable class="full"></el-input></div>
    <div class="input-div"><span class="label">内容：</span><el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="请输入内容" 
           v-model="content" class="full"></el-input>
@@ -47,6 +50,41 @@
               <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
       </div>
+
+    </div>
+
+    <div v-show="seleType==2">
+    <div class="input-div">
+      <span class="label">选择话题：</span>
+      <el-select v-model="seleTopic" clearable placeholder="请选择" @change="test" style="width:840px;">
+       <el-option
+         v-for="item in topicArr"
+         :key="item.value"
+         :label="item.label"
+         :value="item.value">
+       </el-option>
+     </el-select>
+    </div>
+    <div class="input-div"><span class="label">内容：</span><el-input type="textarea" :autosize="{ minRows: 4, maxRows: 8}" placeholder="请输入内容" 
+          v-model="content" class="full"></el-input>
+   </div> 
+
+    </div>
+    <div class="input-div">
+      <span class="label">选择发表人：</span>
+      <el-select v-model="seleUser" clearable placeholder="请选择" @change="test" style="width:840px;">
+      <el-option
+         v-for="item in pubUser"
+         :key="item.value"
+         :label="item.label"
+         :value="item.value">
+     </el-option>
+     </el-select>
+   </div>
+     <div style="margin-top: 15px;">
+     <el-button type="info" @click="reset">重置</el-button>
+     <el-button type="primary" @click="creUser">创建</el-button>
+    </div>
   </div>
 </template>
 
@@ -55,20 +93,41 @@ export default {
   name: 'usercRePanl',
   data () {
     return {
-      options:[{
-          value: '选项1',
+      postType:[{
+          value: '1',
           label: '话题'
         }, {
-          value: '选项2',
+          value: '2',
           label: '投稿'
         }],
-        value: '',
+        pubUser:[{
+          value: '1',
+          label: 'SunDa'
+        }, {
+          value: '2',
+          label: '花仙子'
+        }],
+        topicArr:[
+        { 
+          value: '1',
+          label: '测试1'
+        }, {
+          value: '2',
+          label: '测试2'
+        }
+        ],
+        seleType: '1',
+        seleUser:'',
+        seleTopic:'',
         title:'',
         content:'',
         fileList: []
     }
   },
    methods: {
+      test(){
+        console.log('selectType-----------------',this.$data.seleType);
+     },
       handleRemove(file, fileList) {
         console.log(file, fileList);
       },
