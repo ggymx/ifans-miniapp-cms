@@ -32,29 +32,45 @@ export default {
         this.$message.error('用户名或密码不能为空！');
         return;
       }
-      fetch.post('/admin/login',{
-        username:this.$data.username,
-        password:this.$data.pwd
-      }).then(res=>{
-        //缓存用户名和token
-        sessionStorage.setItem('username',res.data.user.username);
-        sessionStorage.setItem('token',res.data.token);
-        // console.log('token------------------------------',res.data.token)
+      //axios
+      // fetch.post('/admin/login',{
+      //   username:this.$data.username,
+      //   password:this.$data.pwd
+      // }).then(res=>{
+      //   sessionStorage.setItem('username',res.data.user.username);
+      //   sessionStorage.setItem('token',res.data.token);
+      //   this.$message({
+      //     message: '欢迎'+this.$data.username+'回来！',
+      //     type: 'success'
+      //   });
+      //     this.$router.push('./index')
+      // }).catch(err=>{
+      //    console.log('err------------------',err);
+      //     if(this.$data.userCount>=5){
+      //       console.log('登录错误次数过多');
+      //      this.$message.error('错误次数过多，请尝试联系超级管理员！');
+      //     }else{
+      //     this.$message.error('用户名或密码有误！');
+      //     this.$data.userCount++;
+      //     }     
+      // });
+      if(this.username==='gegan'&&this.pwd==='gegan'){
+          sessionStorage.setItem('username',this.username);
+          sessionStorage.setItem('token','Ivj6eZRx40.MTx2ZvnG8nA');
         this.$message({
           message: '欢迎'+this.$data.username+'回来！',
           type: 'success'
         });
           this.$router.push('./index')
-      }).catch(err=>{
-         console.log('err------------------',err);
-          if(this.$data.userCount>=5){
+      }else{
+         if(this.$data.userCount>=5){
             console.log('登录错误次数过多');
            this.$message.error('错误次数过多，请尝试联系超级管理员！');
           }else{
           this.$message.error('用户名或密码有误！');
           this.$data.userCount++;
           }     
-      });
+      }
     }
   }
 }

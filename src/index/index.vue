@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     loginOut() {
+      sessionStorage.clear();
       this.$router.push("/");
     },
     handleChange() {},

@@ -77,11 +77,11 @@
      <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
+      :current-page="currentPage"
       :page-sizes="[5, 8, 10, 15, 20]"
-      :page-size="100"
+      :page-size="resData.data.posts.length"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="resData.data.posts.length"
       :pager-count="11">
     </el-pagination>
 
@@ -169,7 +169,8 @@ export default {
       loading:true,
       creatUser:'',
       tableData: ['测试数据'],
-      resData:null
+      resData:null,
+      currentPage:1
     };
   },
   created(){
@@ -182,7 +183,7 @@ export default {
       // alert('init--------------------调用');
       fetch.get('/admin/user/post/list',{
          cursor:0,
-         limit:80
+         limit:1000
       }).then(res=>{
         console.log('resData-------------------------',res)
         this.$data.resData=res;
@@ -218,7 +219,24 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
+    },
+    //控制分页
+    handleSizeChange(pageCount){
+    // console.log('--------------------------curPage',this.$data.currentPage);
+    //     fetch.get('/admin/user/post/list',{
+    //         cursor:this.$data.currentPage-1,
+    //         limit:pageCount
+    //     }).then(res=>{
+    //           console.log('分页后产生的数据------------------',res);
+    //          this.$data.resData=res;
+    //     }).catch(err=>{
+
+    //     });
+    },
+    handleCurrentChange(curentPage){
+      this.$data.currentPage=curentPage;
     }
+    
   },
   
 };
