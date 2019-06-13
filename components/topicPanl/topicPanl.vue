@@ -180,19 +180,53 @@ export default {
   methods:{
     //初始化数据
     init(){
-      // alert('init--------------------调用');
-      fetch.get('/admin/user/post/list',{
-         cursor:0,
-         limit:1000
-      }).then(res=>{
-        console.log('resData-------------------------',res)
-        this.$data.resData=res;
-          setTimeout(() => {
+      // fetch.get('/admin/user/post/list',{
+      //    cursor:0,
+      //    limit:1000
+      // }).then(res=>{
+      //   console.log('resData-------------------------',res)
+      //   this.$data.resData=res;
+      //     setTimeout(() => {
+      //      this.$data.loading=false
+      //     }, 500);
+      // }).catch(err=>{
+      //     console.log('topic-err----------------',err);
+      // })
+      this.resData={
+            data:{
+              posts:[
+                {
+                  id:1,
+                  type:'投稿',
+                  title:'测试标题',
+                  text:'测试内容',
+                  userId:1,
+                  refPostId:'酒干倘卖无',
+                  createAt:'2009-08-02',
+                  IsUp:'否',
+                  status:'正常',
+                  attendCount:50,
+                  likeCount:20
+                },
+                 {
+                  id:1,
+                  type:'话题',
+                  title:'酒干倘卖无',
+                  text:'测试内容',
+                  userId:1,
+                  refPostId:'无',
+                  createAt:'2009-07-02',
+                  IsUp:'否',
+                  status:'正常',
+                  attendCount:60,
+                  likeCount:90
+                }
+              ]
+            }
+          }
+      setTimeout(() => {
            this.$data.loading=false
-          }, 500);
-      }).catch(err=>{
-          console.log('topic-err----------------',err);
-      })
+      }, 500);
     },
     //高级匹配
     searchMore(){

@@ -14,9 +14,16 @@ module.exports = {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
-        ],
-      },      {
+          'css-loader',
+          'style-loader'
+        ]
+      }, 
+      //支持less
+      {
+        test:/\.less$/,
+        loader:'style-loader!css-loader!less-loader'
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {

@@ -195,19 +195,41 @@ export default {
     },
      //初始化数据
     init(){
-      // alert('init--------------------调用');
-      fetch.get('/admin/user',{
-         cursor:0,
-         limit:80
-      }).then(res=>{
-        console.log('resData-------------------------',res)
-        this.$data.resData=res;
+      // fetch.get('/admin/user',{
+      //    cursor:0,
+      //    limit:80
+      // }).then(res=>{
+      //   console.log('resData-------------------------',res)
+      //   this.$data.resData=res;
+      //     setTimeout(() => {
+      //      this.$data.loading=false
+      //     }, 500);
+      // }).catch(err=>{
+      //     console.log('topic-err----------------',err);
+      // })
+        this.$data.resData={
+          data:{
+            users:[
+              {
+                id:1,
+                nickname:'孙达',
+                regInfo:'wxapp',
+                createAt:'2015-02-06',
+                updateAt:'2015-02-09'
+              },
+              {
+                 id:2,
+                nickname:'项萌',
+                regInfo:'wxapp',
+                createAt:'2016-10-08',
+                updateAt:'2016-10-10'
+              }
+            ]
+          }
+        };
           setTimeout(() => {
            this.$data.loading=false
           }, 500);
-      }).catch(err=>{
-          console.log('topic-err----------------',err);
-      })
     }
   }
 }

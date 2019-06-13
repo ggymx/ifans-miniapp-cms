@@ -76,6 +76,6 @@ export default {
 }
 </script>
 
-<style>
-    @import url('login.css');
+<style scoped lang='less'>
+    @import url('login.less');
 </style>

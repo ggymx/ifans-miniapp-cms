@@ -108,6 +108,6 @@ $(document).ready(function(){
 
 </script>
 
-<style>
+<style scoped>
 @import url("index.css");
 </style>
