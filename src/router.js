@@ -4,16 +4,16 @@ import Router from 'vue-router';
 // import VueRouter from 'vue-router';
 
 //引入组件
-import login from './login/login.vue'
-import index from './index/index.vue'
-import alert from '../components/alertsPanl/alertsPanl.vue'
-import user from '../components/userPanl/userPanl.vue'
-import userCre from '../components/usercRePanl/usercRePanl.vue'
-import topic from '../components/topicPanl/topicPanl.vue'
-import topicCre from '../components/topiccRePanl/topiccRePanl.vue'
-import post from '../components/postPanl/postPanl.vue'
-import postCre from '../components/postcRePanl/postcRePanl.vue'
-import userBack from '../components/backPanl/backPanl.vue'
+import login from './views/login/login.vue'
+import index from './views/index/index.vue'
+import alert from './components/alertsPanl/alertsPanl.vue'
+import user from './components/userPanl/userPanl.vue'
+import userCre from './components/usercRePanl/usercRePanl.vue'
+import topic from './components/topicPanl/topicPanl.vue'
+import topicCre from './components/topiccRePanl/topiccRePanl.vue'
+import post from './components/postPanl/postPanl.vue'
+import postCre from './components/postcRePanl/postcRePanl.vue'
+import userBack from './components/backPanl/backPanl.vue'
 
 //Vue全局引用路由模块
 Vue.use(Router);

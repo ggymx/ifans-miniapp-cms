@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import fetch from '../../src/fetch.js'
+import axios from '../../axios.js'
 export default {
   name: 'usercRePanl',
   data () {
@@ -131,7 +131,7 @@ export default {
       crePost(){
         if(this.$data.seleType=='1'){
           //发布话题
-          fetch.post('/admin/post/create-post',{
+          axios.post('/admin/post/create-post',{
               type:this.$data.seleType,
               title:this.$data.title,
               text:this.$data.content,
@@ -155,7 +155,7 @@ export default {
           })
         }else{
           //发布投稿
-          fetch.post('/admin/post/create-answer',{
+          axios.post('/admin/post/create-answer',{
              type:this.$data.seleType,
              refPostId:this.$data.seleTopic,
              text:this.$data.content,
@@ -182,7 +182,7 @@ export default {
       loadTopic(){
          //懒加载话题列表
          if(this.$data.seleType=='2'&&this.$data.firstLoad){
-           fetch.get('/admin/user/post/list',{
+           axios.get('/admin/user/post/list',{
              cursor:0,
              limit:1000
            }).then(res=>{
@@ -198,7 +198,7 @@ export default {
          }
      },
      init(){
-      //  fetch.get('/admin/user',{
+      //  axios.get('/admin/user',{
       //   cursor:0,
       //   limit:1000
       //  }).then(res=>{

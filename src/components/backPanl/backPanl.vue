@@ -1,6 +1,7 @@
 <!--消息通知面板-->
 <template>
-  <div>
+   <div>
+
     <!--顶部的条件搜索区-->
     <div style="margin-top:10px;margin-left: 10px;display: flex;align-items: center;">
     <span class="label" style="margin-left:0px">类型：</span>
@@ -19,7 +20,6 @@
     v-model="creatUser"
     clearable style="width:120px;height:35px">
   </el-input>
-
 
     <span class="label">日期范围：</span>
      <el-date-picker
@@ -41,49 +41,48 @@
        <el-button type="primary" icon="el-icon-search" class="custom-btn">搜索</el-button>
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
-
-    <!--数据显示区域-->
-    <div style="width:auto;height:auto;display:flex">
-    <el-table :data="resData.data.posts" style="width: 100%" stripe
-     v-loading="loading"
+   <div style="width:auto;height:auto;display:flex">
+    <el-table :data="tableData" style="width: 100%" stripe
+    v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
-      <el-table-column prop="id" label="ID" width="50"></el-table-column>
-      <el-table-column prop="type" label="类型" width="60"></el-table-column>
-      <el-table-column prop="title" label="标题" width="180"></el-table-column>
-      <el-table-column prop="text" label="内容" width="280"></el-table-column>
-      <el-table-column prop="userId" label="创建人" width="80"></el-table-column>
-      <el-table-column prop="refPostId" label="关联话题" width="100"></el-table-column>
-      <el-table-column prop="createAt" label="创建时间" width="100"></el-table-column>
-      <el-table-column prop="IsUp" label="是否置顶" width="95"></el-table-column>
-      <el-table-column prop="status" label="状态" width="95"></el-table-column>
-      <el-table-column prop="attendCount" label="浏览量" width="95"></el-table-column>
-      <el-table-column prop="likeCount" label="参与量" width="95"></el-table-column>
-
-      <el-table-column fixed="right" label="操作" width="88" >
-      <template slot-scope="scope" id="flod-column">
+      <el-table-column prop="postID" label="序号" width="90"></el-table-column>
+      <el-table-column prop="postTittle" label="类型" width="180"></el-table-column>
+      <el-table-column prop="postDes" label="标题" width="280"></el-table-column>
+      <el-table-column prop="postBrow" label="描述" width="100"></el-table-column>
+      <el-table-column prop="postPar" label="举报人" width="100"></el-table-column>
+      <el-table-column prop="postCre" label="内容" width="100"></el-table-column>
+      <el-table-column prop="postTime" label="举报时间" width="95"></el-table-column>
+      <el-table-column prop="isUp" label="处理状态" width="95"></el-table-column>
+      <el-table-column prop="status" label="备注" width="95"></el-table-column>
+      <el-table-column fixed="right" label="操作" width="88">
+      <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
         <el-button type="text" size="small">删除</el-button>
       </template>
      </el-table-column>
-
     </el-table>
     <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
-      <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
+      <img src="../../assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
     </div>
     </div>
     <!--分页-->
-     <el-pagination
+    <div style="display:flex;align-items: center;">
+
+      <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage"
+      :current-page="currentPage4"
       :page-sizes="[5, 8, 10, 15, 20]"
-      :page-size="resData.data.posts.length"
+      :page-size="100"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="resData.data.posts.length"
-      :pager-count="11">
-    </el-pagination>
+      :total="400"
+      :pager-count="6"
+    ></el-pagination>
+    <el-button type="success">已受理</el-button>
+    <el-button type="danger">不处理</el-button>
+    </div>
 
     <!--高级搜索对话框-->
     <el-dialog
@@ -113,32 +112,35 @@
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
    </span>
 </el-dialog>
+
   </div>
 </template>
 
 <script>
-import fetch from '../../src/fetch.js'
-import $ from '../../src/jquery-3.0.0.min.js'
+import axios from '../../axios.js'
+import $ from '../../jquery-3.0.0.min.js'
 export default {
-  name: "topicPanl",
-  data() {
+  name: 'backPanl',
+  data () {
     return {
+      dialogVisible:false,
       titleKey:'',
       contentKey:'',
-      dialogVisible:false,
-      more:'',
-      typeOpt:[
-     {
+       loading:true,
+       typeOpt:[
+       {
           value: 'post',
           label: '投稿'
-    },
-    {
+       },
+       {
           value: 'topic',
           label: '话题'
-    }
-    ],
+       }
+     ],
       typed:'',
-       pickerOptions: {
+      creatUser:'',
+      selDate:'',
+          pickerOptions: {
           shortcuts: [{
             text: '最近一周',
             onClick(picker) {
@@ -165,71 +167,53 @@ export default {
             }
           }]
         },
-        selDate:'',
-      loading:true,
-      creatUser:'',
-      tableData: ['测试数据'],
-      resData:null,
-      currentPage:1
-    };
+        resData:null,
+       tableData: [
+        {
+          postID: 1,
+          postTittle: '投稿',
+          postDes: "某某话题",
+          postBrow: '描述',
+          postPar: '举报人',
+          postCre: "违规信息",
+          postTime: "2018-01-01 11:11:11",
+          isUp: "已处理",
+          status: "正常发布"
+        },
+        {
+          postID: 1,
+          postTittle: '投稿',
+          postDes: "某某话题",
+          postBrow: '描述',
+          postPar: '举报人',
+          postCre: "违规信息",
+          postTime: "2018-01-01 11:11:11",
+          isUp: "已处理",
+          status: "正常发布"
+        },
+         {
+          postID: 1,
+          postTittle: '投稿',
+          postDes: "某某话题",
+          postBrow: '描述',
+          postPar: '举报人',
+          postCre: "违规信息",
+          postTime: "2018-01-01 11:11:11",
+          isUp: "已处理",
+          status: "正常发布"
+        }
+      ]
+    }
   },
   created(){
-    // alert('钩子函数created--------------调用');
-    this.init();
+    setTimeout(() => {
+       this.$data.loading=false;
+    }, 500);
+   
   },
   methods:{
-    //初始化数据
-    init(){
-      // fetch.get('/admin/user/post/list',{
-      //    cursor:0,
-      //    limit:1000
-      // }).then(res=>{
-      //   console.log('resData-------------------------',res)
-      //   this.$data.resData=res;
-      //     setTimeout(() => {
-      //      this.$data.loading=false
-      //     }, 500);
-      // }).catch(err=>{
-      //     console.log('topic-err----------------',err);
-      // })
-      this.resData={
-            data:{
-              posts:[
-                {
-                  id:1,
-                  type:'投稿',
-                  title:'测试标题',
-                  text:'测试内容',
-                  userId:1,
-                  refPostId:'酒干倘卖无',
-                  createAt:'2009-08-02',
-                  IsUp:'否',
-                  status:'正常',
-                  attendCount:50,
-                  likeCount:20
-                },
-                 {
-                  id:1,
-                  type:'话题',
-                  title:'酒干倘卖无',
-                  text:'测试内容',
-                  userId:1,
-                  refPostId:'无',
-                  createAt:'2009-07-02',
-                  IsUp:'否',
-                  status:'正常',
-                  attendCount:60,
-                  likeCount:90
-                }
-              ]
-            }
-          }
-      setTimeout(() => {
-           this.$data.loading=false
-      }, 500);
-    },
-    //高级匹配
-    searchMore(){
+     searchMore(){
+      //弹出对话框
       this.$data.dialogVisible=true
     },
      //点击叉号关闭对话框
@@ -240,7 +224,7 @@ export default {
           })
           .catch(_ => {});
      },
-     //折叠效果
+       //折叠效果
      flod_right(){
        console.log('------------------------sssss')
      $('.el-table__fixed-right').animate({
@@ -254,29 +238,11 @@ export default {
        }
      console.log('-------',this);
     },
-    //控制分页
-    handleSizeChange(pageCount){
-    // console.log('--------------------------curPage',this.$data.currentPage);
-    //     fetch.get('/admin/user/post/list',{
-    //         cursor:this.$data.currentPage-1,
-    //         limit:pageCount
-    //     }).then(res=>{
-    //           console.log('分页后产生的数据------------------',res);
-    //          this.$data.resData=res;
-    //     }).catch(err=>{
-
-    //     });
-    },
-    handleCurrentChange(curentPage){
-      this.$data.currentPage=curentPage;
-    }
-    
-  },
-  
-};
-
+    init(){}
+  }
+}
 </script>
 
 <style>
- @import url('topicPanl.css');
+ @import url('backPanl.css');
 </style>

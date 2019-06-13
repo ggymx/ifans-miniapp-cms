@@ -3,7 +3,7 @@
     <div class="container" style="background-color: #3f506a;">
       <div class="header">
         <div class="user-border">
-          <img src="../assets/user.png" class="user">
+          <img src="../../assets/user.png" class="user">
         </div>
         <span class="username">{{username}}</span>
         <el-button plain class="logout-btn" @click="loginOut">退出</el-button>
@@ -40,7 +40,7 @@
           </div>
          
           <div class="fold" @click="flod_left">
-              <img src="../assets/b.png" class="arrow-img">
+              <img src="../../assets/b.png" class="arrow-img">
           </div>
         </div>
         <!--右侧表格区域  width:85%;-->
@@ -53,8 +53,8 @@
     </div>
 </template>
 <script>
-import axios from '../axios.js'
-import $ from '../jquery-3.0.0.min.js'
+import axios from '../../axios.js'
+import $ from '../../jquery-3.0.0.min.js'
 export default {
   name: "index",
   data() {

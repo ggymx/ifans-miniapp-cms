@@ -1,6 +1,6 @@
 <!--消息通知面板-->
 <template>
-   <div>
+  <div>
 
     <!--顶部的条件搜索区-->
     <div style="margin-top:10px;margin-left: 10px;display: flex;align-items: center;">
@@ -41,21 +41,22 @@
        <el-button type="primary" icon="el-icon-search" class="custom-btn">搜索</el-button>
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
-   <div style="width:auto;height:auto;display:flex">
+
+    <div style="width:auto;height:auto;display:flex">
     <el-table :data="tableData" style="width: 100%" stripe
-    v-loading="loading"
+     v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
-      <el-table-column prop="postID" label="序号" width="90"></el-table-column>
-      <el-table-column prop="postTittle" label="类型" width="180"></el-table-column>
-      <el-table-column prop="postDes" label="标题" width="280"></el-table-column>
-      <el-table-column prop="postBrow" label="描述" width="100"></el-table-column>
-      <el-table-column prop="postPar" label="举报人" width="100"></el-table-column>
-      <el-table-column prop="postCre" label="内容" width="100"></el-table-column>
-      <el-table-column prop="postTime" label="举报时间" width="95"></el-table-column>
-      <el-table-column prop="isUp" label="处理状态" width="95"></el-table-column>
-      <el-table-column prop="status" label="备注" width="95"></el-table-column>
+      <el-table-column prop="postID" label="投稿ID" width="90"></el-table-column>
+      <el-table-column prop="postTittle" label="投稿标题" width="180"></el-table-column>
+      <el-table-column prop="postDes" label="投稿描述" width="280"></el-table-column>
+      <el-table-column prop="postBrow" label="浏览量" width="100"></el-table-column>
+      <el-table-column prop="postPar" label="参与量" width="100"></el-table-column>
+      <el-table-column prop="postCre" label="新建人" width="100"></el-table-column>
+      <el-table-column prop="postTime" label="新建时间" width="100"></el-table-column>
+      <el-table-column prop="isUp" label="是否置顶" width="95"></el-table-column>
+      <el-table-column prop="status" label="状态" width="95"></el-table-column>
       <el-table-column fixed="right" label="操作" width="88">
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
@@ -63,8 +64,8 @@
       </template>
      </el-table-column>
     </el-table>
-    <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
-      <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
+     <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
+      <img src="../../assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
     </div>
     </div>
     <!--分页-->
@@ -80,11 +81,12 @@
       :total="400"
       :pager-count="6"
     ></el-pagination>
-    <el-button type="success">已受理</el-button>
-    <el-button type="danger">不处理</el-button>
+    <el-button type="primary">添加</el-button>
+    <el-button type="info">置顶</el-button>
+    <el-button type="danger" @click="del">删除</el-button>
     </div>
 
-    <!--高级搜索对话框-->
+     <!--高级搜索对话框-->
     <el-dialog
      title="高级搜索"
     :visible.sync="dialogVisible"
@@ -105,27 +107,26 @@
          maxlength="300"
          show-word-limit>
       </el-input>
-
-    </div>
-    <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-   </span>
-</el-dialog>
+     </div>
+     <span slot="footer" class="dialog-footer">
+     <el-button @click="dialogVisible = false">取 消</el-button>
+     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+    </span>
+   </el-dialog>
 
   </div>
 </template>
 
 <script>
-import fetch from '../../src/fetch.js'
-import $ from '../../src/jquery-3.0.0.min.js'
+import axios from '../../axios.js'
+import $ from '../../jquery-3.0.0.min.js'
 export default {
-  name: 'backPanl',
-  data () {
+  name: "postPanl",
+  data() {
     return {
       dialogVisible:false,
-      titleKey:'',
-      contentKey:'',
+       titleKey:'',
+       contentKey:'',
        loading:true,
        typeOpt:[
        {
@@ -167,52 +168,69 @@ export default {
             }
           }]
         },
-        resData:null,
-       tableData: [
+        resData:null,//待接收数据的字段
+      tableData: [
         {
           postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
+          postTittle: "tittle",
+          postDes: "描述",
+          postBrow: 999,
+          postPar: 888,
+          postCre: "张三",
           postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
+          isUp: "是",
+          status: "正常"
         },
         {
           postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
+          postTittle: "tittle",
+          postDes: "描述",
+          postBrow: 999,
+          postPar: 888,
+          postCre: "李四",
           postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
+          isUp: "是",
+          status: "正常"
         },
-         {
+        {
           postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
+          postTittle: "tittle",
+          postDes: "描述",
+          postBrow: 999,
+          postPar: 888,
+          postCre: "李四",
           postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
+          isUp: "是",
+          status: "正常"
         }
       ]
-    }
+    };
   },
   created(){
+    // this.init();
     setTimeout(() => {
-       this.$data.loading=false;
+      this.$data.loading=false;
     }, 500);
-   
   },
   methods:{
-     searchMore(){
+       del() {
+        this.$confirm('是否删除该用户？', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$message({
+            type: 'success',
+            message: '删除成功!'
+          });
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });          
+        });
+      },
+      searchMore(){
       //弹出对话框
       this.$data.dialogVisible=true
     },
@@ -224,8 +242,7 @@ export default {
           })
           .catch(_ => {});
      },
-       //折叠效果
-     flod_right(){
+      flod_right(){
        console.log('------------------------sssss')
      $('.el-table__fixed-right').animate({
          width:'toggle'
@@ -237,12 +254,28 @@ export default {
          $('.arrow-right').attr('src','src/assets/b.png')
        }
      console.log('-------',this);
-    },
-    init(){}
+  },
+    //初始化数据
+    init(){
+      // alert('init--------------------调用');
+      // axios.get('/admin/user/post/list',{
+      //    cursor:0,
+      //    limit:80
+      // }).then(res=>{
+      //   console.log('resData-------------------------',res)
+      //   this.$data.resData=res;
+      //     setTimeout(() => {
+      //      this.$data.loading=false
+      //     }, 500);
+      // }).catch(err=>{
+      //     console.log('topic-err----------------',err);
+      // })
+    }
   }
-}
+};
 </script>
 
 <style>
- @import url('backPanl.css');
+/*scoped代表组件的私有样式（防止样式污染） 不包括import的css文件*/
+ @import url('postPanl.css');
 </style>

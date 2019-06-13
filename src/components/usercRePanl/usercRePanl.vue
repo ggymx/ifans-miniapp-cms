@@ -14,7 +14,7 @@
 
 ///admin/user/create
 
-import fetch from '../../src/fetch.js'
+import axios from '../../axios.js'
 export default {
   name: 'usercRePanl',
   data () {
@@ -25,7 +25,7 @@ export default {
   },
    methods: {
        creUser() {
-        fetch.post('/admin/user/create',{
+        axios.post('/admin/user/create',{
             nickname:this.$data.nickname,
             avatar:this.$data.avatar
         }).then(res=>{
