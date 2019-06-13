@@ -44,7 +44,7 @@
 
     <!--数据显示区域-->
     <div style="width:auto;height:auto;display:flex">
-    <el-table :data="this.$store.getters.posts.filter(item=>{return item.type===1})" style="width: 100%" stripe
+    <el-table :data="this.$store.getters.posts" style="width: 100%" stripe
      v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"

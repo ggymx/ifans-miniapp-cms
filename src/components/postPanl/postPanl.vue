@@ -41,7 +41,7 @@
 
     <div style="width:auto;height:auto;display:flex">
       <el-table
-        :data="this.$store.getters.posts.filter(item=>{return item.type===2})"
+        :data="this.$store.getters.posts"
         style="width: 100%"
         stripe
         v-loading="loading"
