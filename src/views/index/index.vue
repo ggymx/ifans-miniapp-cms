@@ -73,6 +73,7 @@ export default {
           background: 'rgba(0, 0, 0, 0.5)'
         });
     this.$data.username=sessionStorage.getItem('username');
+      this.$data.username=this.username;
     setTimeout(() => {
          loading.close();
     }, 500);

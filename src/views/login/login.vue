@@ -33,28 +33,30 @@ export default {
         return;
       }
       //axios
-      axios.post('/admin/login',{
-        username:this.$data.username,
-        password:this.$data.pwd
-      }).then(res=>{
-        sessionStorage.setItem('username',res.data.user.username);
-        sessionStorage.setItem('token',res.data.token);
-        this.$message({
-          message: '欢迎'+this.$data.username+'回来！',
-          type: 'success'
-        });
-          this.$router.push('./index')
-      }).catch(err=>{
-         console.log('err------------------',err);
-          if(this.$data.userCount>=5){
-            console.log('登录错误次数过多');
-           this.$message.error('错误次数过多，请尝试联系超级管理员！');
-          }else{
-          this.$message.error('用户名或密码有误！');
-          this.$data.userCount++;
-          }     
-      });
-      if(this.username==='gegan'&&this.pwd==='gegan'){
+      // axios.post('/admin/login',{
+      //   username:this.$data.username,
+      //   password:this.$data.pwd
+      // }).then(res=>{
+      //   sessionStorage.setItem('username',res.data.user.username);
+      //   sessionStorage.setItem('token',res.data.token);
+      //   this.$message({
+      //     message: '欢迎'+this.$data.username+'回来！',
+      //     type: 'success'
+      //   });
+      //     this.$router.push('./index')
+      // }).catch(err=>{
+      //    console.log('err------------------',err);
+      //     if(this.$data.userCount>=5){
+      //       console.log('登录错误次数过多');
+      //      this.$message.error('错误次数过多，请尝试联系超级管理员！');
+      //     }else{
+      //     this.$message.error('用户名或密码有误！');
+      //     this.$data.userCount++;
+      //     }     
+      // });
+      console.log('获取状态管理中的username------',this.$store);
+      const user=this.$store.state.admin.filter((item)=>{return this.username===item.username});
+      if(user){
           sessionStorage.setItem('username',this.username);
           sessionStorage.setItem('token','Ivj6eZRx40.MTx2ZvnG8nA');
         this.$message({
