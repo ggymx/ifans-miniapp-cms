@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "element-ui": "^2.7.2",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "vue": "^2.5.11"
   },
   "browserslist": [
@@ -27,6 +29,7 @@
     "cross-env": "^5.0.5",
     "css-loader": "^0.28.7",
     "file-loader": "^1.1.4",
+    "style-loader": "^0.23.1",
     "vue-loader": "^13.0.5",
     "vue-router": "^3.0.6",
     "vue-template-compiler": "^2.4.4",

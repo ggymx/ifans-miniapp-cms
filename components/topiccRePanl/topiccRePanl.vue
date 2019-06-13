@@ -198,16 +198,32 @@ export default {
          }
      },
      init(){
-       //加载user绑定
-       fetch.get('/admin/user',{
-        cursor:0,
-        limit:1000
-       }).then(res=>{
-        console.log('接受到的用户列表--------------',res);
-        this.$data.resData=res;
-       }).catch(err=>{
-
-       })
+      //  fetch.get('/admin/user',{
+      //   cursor:0,
+      //   limit:1000
+      //  }).then(res=>{
+      //   console.log('接受到的用户列表--------------',res);
+      //   this.$data.resData=res;
+      //  }).catch(err=>{
+      //  })
+      this.resData={
+        data:{
+          users:[
+            {
+              id:1,
+              nickname:'项萌'
+            },
+            {
+              id:1,
+              nickname:'李旭明'
+            },
+            {
+              id:1,
+              nickname:'游明星'
+              }
+          ]
+        }
+      }
      },
      reset(){
        //重置按钮

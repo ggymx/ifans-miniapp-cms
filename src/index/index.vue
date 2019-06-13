@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     loginOut() {
+      sessionStorage.clear();
       this.$router.push("/");
     },
     handleChange() {},
@@ -107,6 +108,6 @@ $(document).ready(function(){
 
 </script>
 
-<style>
+<style scoped>
 @import url("index.css");
 </style>
