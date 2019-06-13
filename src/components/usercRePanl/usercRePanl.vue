@@ -25,27 +25,52 @@ export default {
   },
    methods: {
        creUser() {
-        axios.post('/admin/user/create',{
-            nickname:this.$data.nickname,
-            avatar:this.$data.avatar
-        }).then(res=>{
-          this.$data.nickname='',
-          this.$data.avatar=''
-          console.log('创建用户-----------------',res);
-           if(res.data.id){
-              this.$notify({
-              title: '成功',
-              message: '成功创建一个用户',
-              type: 'success'
-             });
-           }
-        }).catch(err=>{
-              this.$notify.error({
-              title: '错误',
-              message: '创建用户失败！'
-             });
+        // axios.post('/admin/user/create',{
+        //     nickname:this.$data.nickname,
+        //     avatar:this.$data.avatar
+        // }).then(res=>{
+        //   this.$data.nickname='',
+        //   this.$data.avatar=''
+        //   console.log('创建用户-----------------',res);
+        //    if(res.data.id){
+        //       this.$notify({
+        //       title: '成功',
+        //       message: '成功创建一个用户',
+        //       type: 'success'
+        //      });
+        //    }
+        // }).catch(err=>{
+        //       this.$notify.error({
+        //       title: '错误',
+        //       message: '创建用户失败！'
+        //      });
+        // });
+        if(this.nickname&&this.avatar){
+          const users=this.$store.getters.users
+        const lastId=users[users.length-1].id
+        const data={
+          id:lastId+1,
+          nickname:this.nickname,
+          regInfo:'wxapp',
+          createAt:new Date().toLocaleDateString(),
+          updateAt:new Date().toLocaleDateString()
+        };
+        this.$store.dispatch('addUser',data);
+        this.$data.nickname='';
+        this.$data.avatar='';
+        this.$notify({
+          title: '创建',
+          message: '创建用户成功！！！',
+          type: 'success'
         });
-       
+        }else{
+           this.$notify({
+          title: '警告',
+          message: '用户名和头像不能为空！！！',
+          type: 'warning'
+        });
+        }
+      
       },
         reset() {
         this.$data.nickname='',

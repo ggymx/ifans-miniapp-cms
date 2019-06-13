@@ -44,7 +44,7 @@
 
     <!--数据显示区域-->
     <div style="width:auto;height:auto;display:flex">
-    <el-table :data="resData.data.posts" style="width: 100%" stripe
+    <el-table :data="this.$store.getters.posts.filter(item=>{return item.type===1})" style="width: 100%" stripe
      v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
@@ -64,7 +64,7 @@
       <el-table-column fixed="right" label="操作" width="88" >
       <template slot-scope="scope" id="flod-column">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-        <el-button type="text" size="small">删除</el-button>
+        <el-button type="text" size="small" @click="delPost(scope.row)">删除</el-button>
       </template>
      </el-table-column>
 
@@ -79,9 +79,9 @@
       @current-change="handleCurrentChange"
       :current-page="currentPage"
       :page-sizes="[5, 8, 10, 15, 20]"
-      :page-size="resData.data.posts.length"
+      :page-size="posts.length"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="resData.data.posts.length"
+      :total="posts.length"
       :pager-count="11">
     </el-pagination>
 
@@ -168,8 +168,7 @@ export default {
         selDate:'',
       loading:true,
       creatUser:'',
-      tableData: ['测试数据'],
-      resData:null,
+      posts:null,
       currentPage:1
     };
   },
@@ -192,38 +191,8 @@ export default {
       // }).catch(err=>{
       //     console.log('topic-err----------------',err);
       // })
-      this.resData={
-            data:{
-              posts:[
-                {
-                  id:1,
-                  type:'投稿',
-                  title:'测试标题',
-                  text:'测试内容',
-                  userId:1,
-                  refPostId:'酒干倘卖无',
-                  createAt:'2009-08-02',
-                  IsUp:'否',
-                  status:'正常',
-                  attendCount:50,
-                  likeCount:20
-                },
-                 {
-                  id:1,
-                  type:'话题',
-                  title:'酒干倘卖无',
-                  text:'测试内容',
-                  userId:1,
-                  refPostId:'无',
-                  createAt:'2009-07-02',
-                  IsUp:'否',
-                  status:'正常',
-                  attendCount:60,
-                  likeCount:90
-                }
-              ]
-            }
-          }
+      console.log('vuex的post-----------',this.$store);
+      this.posts=this.$store.getters.posts
       setTimeout(() => {
            this.$data.loading=false
       }, 500);
@@ -269,8 +238,11 @@ export default {
     },
     handleCurrentChange(curentPage){
       this.$data.currentPage=curentPage;
+    },
+    delPost(scopeRow){
+      console.log('要删除的post-------',scopeRow)
+      this.$store.dispatch('delPost',{id:scopeRow.id})
     }
-    
   },
   
 };

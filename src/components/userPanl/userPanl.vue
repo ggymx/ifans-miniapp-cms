@@ -43,7 +43,7 @@
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
     <div style="width:auto;height:auto;display:flex">
-    <el-table :data="resData.data.users" style="width: 100%" stripe
+    <el-table :data="this.$store.getters.users" style="width: 100%" stripe
       v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
@@ -56,7 +56,7 @@
       <el-table-column fixed="right" label="操作" width="88">
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-        <el-button type="text" size="small">删除</el-button>
+        <el-button type="text" size="small" @click="delUser(scope.row)">删除</el-button>
       </template>
      </el-table-column>
     </el-table>
@@ -111,6 +111,7 @@
 <script>
 import axios from '../../axios.js'
 import $ from '../../jquery-3.0.0.min.js'
+import {mapState} from 'vuex'
 export default {
   name: 'userPanl',
   data () {
@@ -159,7 +160,7 @@ export default {
             }
           }]
         },
-        resData:null,
+        users:null,
      tableData:['测试数据']
     }
   },
@@ -207,29 +208,15 @@ export default {
       // }).catch(err=>{
       //     console.log('topic-err----------------',err);
       // })
-        this.$data.resData={
-          data:{
-            users:[
-              {
-                id:1,
-                nickname:'孙达',
-                regInfo:'wxapp',
-                createAt:'2015-02-06',
-                updateAt:'2015-02-09'
-              },
-              {
-                 id:2,
-                nickname:'项萌',
-                regInfo:'wxapp',
-                createAt:'2016-10-08',
-                updateAt:'2016-10-10'
-              }
-            ]
-          }
-        };
+        // this.$data.users=this.$store.getters.users;
+        // console.log('所有用户------------',this.$store.getters.users)
           setTimeout(() => {
            this.$data.loading=false
           }, 500);
+    },
+    delUser(scopeRow){
+      console.log('当前行的信息----------',scopeRow);
+      this.$store.dispatch('delUser',{id:scopeRow.id})
     }
   }
 }
