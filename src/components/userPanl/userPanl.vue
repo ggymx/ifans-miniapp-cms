@@ -1,8 +1,8 @@
 <!--消息通知面板-->
 <template>
-   <div>
+  <div>
 
-    <!--顶部的条件搜索区-->
+ <!--顶部的条件搜索区-->
     <div style="margin-top:10px;margin-left: 10px;display: flex;align-items: center;">
     <span class="label" style="margin-left:0px">类型：</span>
     <el-select v-model="typed" placeholder="请选择" style="width: 100px;height:35px">
@@ -20,6 +20,7 @@
     v-model="creatUser"
     clearable style="width:120px;height:35px">
   </el-input>
+
 
     <span class="label">日期范围：</span>
      <el-date-picker
@@ -41,35 +42,29 @@
        <el-button type="primary" icon="el-icon-search" class="custom-btn">搜索</el-button>
        <el-button type="primary" icon="el-icon-edit" class="custom-btn">创建</el-button>
     </div>
-   <div style="width:auto;height:auto;display:flex">
-    <el-table :data="tableData" style="width: 100%" stripe
-    v-loading="loading"
+    <div style="width:auto;height:auto;display:flex">
+    <el-table :data="this.$store.getters.users" style="width: 100%" stripe
+      v-loading="loading"
     element-loading-text="拼命加载中"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.5)">
-      <el-table-column prop="postID" label="序号" width="90"></el-table-column>
-      <el-table-column prop="postTittle" label="类型" width="180"></el-table-column>
-      <el-table-column prop="postDes" label="标题" width="280"></el-table-column>
-      <el-table-column prop="postBrow" label="描述" width="100"></el-table-column>
-      <el-table-column prop="postPar" label="举报人" width="100"></el-table-column>
-      <el-table-column prop="postCre" label="内容" width="100"></el-table-column>
-      <el-table-column prop="postTime" label="举报时间" width="95"></el-table-column>
-      <el-table-column prop="isUp" label="处理状态" width="95"></el-table-column>
-      <el-table-column prop="status" label="备注" width="95"></el-table-column>
+      <el-table-column prop="id" label="ID" width="90"></el-table-column>
+      <el-table-column prop="nickname" label="昵称" width="200"></el-table-column>
+      <el-table-column prop="regInfo" label="注册信息" width="150"></el-table-column>
+      <el-table-column prop="createAt" label="注册时间" width="250"></el-table-column>
+      <el-table-column prop="updateAt" label="修改时间" width="250"></el-table-column>
       <el-table-column fixed="right" label="操作" width="88">
       <template slot-scope="scope">
         <el-button @click="handleClick(scope.row)" type="text" size="small">编辑</el-button>
-        <el-button type="text" size="small">删除</el-button>
+        <el-button type="text" size="small" @click="delUser(scope.row)">删除</el-button>
       </template>
      </el-table-column>
     </el-table>
     <div style="width:12px;height:auto;background-color:#eee;cursor:pointer" id="flod-right" @click="flod_right">
-      <img src="../../src/assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
+      <img src="../../assets/b.png" style="width:12px;height:12px;margin-top:195px" class="arrow-right">
     </div>
     </div>
     <!--分页-->
-    <div style="display:flex;align-items: center;">
-
       <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -78,11 +73,8 @@
       :page-size="100"
       layout="total, sizes, prev, pager, next, jumper"
       :total="400"
-      :pager-count="6"
-    ></el-pagination>
-    <el-button type="success">已受理</el-button>
-    <el-button type="danger">不处理</el-button>
-    </div>
+      :pager-count="6">
+      </el-pagination>
 
     <!--高级搜索对话框-->
     <el-dialog
@@ -117,15 +109,16 @@
 </template>
 
 <script>
-import fetch from '../../src/fetch.js'
-import $ from '../../src/jquery-3.0.0.min.js'
+import axios from '../../axios.js'
+import $ from '../../jquery-3.0.0.min.js'
+import {mapState} from 'vuex'
 export default {
-  name: 'backPanl',
+  name: 'userPanl',
   data () {
     return {
-      dialogVisible:false,
-      titleKey:'',
-      contentKey:'',
+       dialogVisible:false,
+       titleKey:'',
+       contentKey:'',
        loading:true,
        typeOpt:[
        {
@@ -167,52 +160,15 @@ export default {
             }
           }]
         },
-        resData:null,
-       tableData: [
-        {
-          postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
-          postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
-        },
-        {
-          postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
-          postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
-        },
-         {
-          postID: 1,
-          postTittle: '投稿',
-          postDes: "某某话题",
-          postBrow: '描述',
-          postPar: '举报人',
-          postCre: "违规信息",
-          postTime: "2018-01-01 11:11:11",
-          isUp: "已处理",
-          status: "正常发布"
-        }
-      ]
+        users:null,
+     tableData:['测试数据']
     }
   },
   created(){
-    setTimeout(() => {
-       this.$data.loading=false;
-    }, 500);
-   
+    this.init();
   },
   methods:{
-     searchMore(){
+       searchMore(){
       //弹出对话框
       this.$data.dialogVisible=true
     },
@@ -224,7 +180,7 @@ export default {
           })
           .catch(_ => {});
      },
-       //折叠效果
+      //折叠效果
      flod_right(){
        console.log('------------------------sssss')
      $('.el-table__fixed-right').animate({
@@ -238,11 +194,34 @@ export default {
        }
      console.log('-------',this);
     },
-    init(){}
+     //初始化数据
+    init(){
+      // axios.get('/admin/user',{
+      //    cursor:0,
+      //    limit:80
+      // }).then(res=>{
+      //   console.log('resData-------------------------',res)
+      //   this.$data.resData=res;
+      //     setTimeout(() => {
+      //      this.$data.loading=false
+      //     }, 500);
+      // }).catch(err=>{
+      //     console.log('topic-err----------------',err);
+      // })
+        // this.$data.users=this.$store.getters.users;
+        // console.log('所有用户------------',this.$store.getters.users)
+          setTimeout(() => {
+           this.$data.loading=false
+          }, 500);
+    },
+    delUser(scopeRow){
+      console.log('当前行的信息----------',scopeRow);
+      this.$store.dispatch('delUser',{id:scopeRow.id})
+    }
   }
 }
 </script>
 
 <style>
- @import url('backPanl.css');
+ @import url('userPanl.css');
 </style>

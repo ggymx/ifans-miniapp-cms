@@ -2,7 +2,7 @@
     width:100%;
     margin:0 auto;
     /* background-color:#01a1a1; */
-    background-image: url('../assets/login_bg.jpg');
+    background-image: url('../../assets/login_bg.jpg');
     height:630px;
     display:flex;
     justify-content: center;
